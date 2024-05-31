@@ -4,19 +4,12 @@ import { FormValues } from "../type";
 
 interface TrackifyDisplayProps {
   data: FormValues[];
+  onDelete: (id: number) => void;
 }
 
-const TrackifyDisplay = ({data}: TrackifyDisplayProps) => {
+const TrackifyDisplay = ({data, onDelete}: TrackifyDisplayProps) => {
   return (
-    <><div className="mb-5">
-    <label htmlFor="inputState" className="form-label">Category</label>
-    <select id="inputState" className="form-select">
-      <option selected>All Categories</option>
-      <option>Groceries</option>
-      <option>Utilities</option>
-      <option>Entertainment</option>
-    </select>
-  </div>
+    <>
 
   <table className="table">
   <thead>
@@ -33,7 +26,14 @@ const TrackifyDisplay = ({data}: TrackifyDisplayProps) => {
       <td>{item.description}</td>
       <td>{item.amount}</td>
       <td>{item.category}</td>
-      <td></td>
+      <td>
+      <button
+                className="btn btn-danger"
+                onClick={() => onDelete(index)}
+              >
+                Delete
+              </button>
+      </td>
     </tr>
     )
   )}
