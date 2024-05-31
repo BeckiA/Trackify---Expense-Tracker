@@ -1,6 +1,12 @@
 // import React from 'react'
 
-const TrackifyDisplay = () => {
+import { FormValues } from "../type";
+
+interface TrackifyDisplayProps {
+  data: FormValues[];
+}
+
+const TrackifyDisplay = ({data}: TrackifyDisplayProps) => {
   return (
     <><div className="mb-5">
     <label htmlFor="inputState" className="form-label">Category</label>
@@ -15,30 +21,22 @@ const TrackifyDisplay = () => {
   <table className="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Description</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Category</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+    {data.map((item, index) => (
+      <tr key={index}>
+      <td>{item.description}</td>
+      <td>{item.amount}</td>
+      <td>{item.category}</td>
+      <td></td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colSpan={2}>Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    )
+  )}
   </tbody>
 </table>
 

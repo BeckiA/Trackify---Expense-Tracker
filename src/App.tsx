@@ -1,18 +1,22 @@
 
+import { useState } from 'react';
 import Trackify from './components/Trackify'
 import TrackifyDisplay from './components/TrackifyDisplay'
+import { FormValues } from './type';
 
-const App: React.FC = () => {
-  const handleSubmit = (data: any) => {
-    console.log(data);
-  };
+const App = () => {
+  const [data, setData] = useState<FormValues[]>([]);
+
+  const handleSubmit = (formValues: FormValues) => {
+    setData(prevData => [...prevData, formValues]);
+  };  
 
 
 
   return (      
     <>
     <Trackify onSubmit={handleSubmit}/>
-    <TrackifyDisplay/>
+    <TrackifyDisplay data={data} />
     </>
   )
 }
