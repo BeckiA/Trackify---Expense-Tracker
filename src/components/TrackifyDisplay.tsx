@@ -8,6 +8,8 @@ interface TrackifyDisplayProps {
 }
 
 const TrackifyDisplay = ({data, onDelete}: TrackifyDisplayProps) => {
+
+  if(data.length === 0) return null;
   return (
     <>
 
@@ -20,6 +22,7 @@ const TrackifyDisplay = ({data, onDelete}: TrackifyDisplayProps) => {
       <th scope="col"></th>
     </tr>
   </thead>
+  
   <tbody>
     {data.map((item, index) => (
       <tr key={index}>
@@ -28,16 +31,22 @@ const TrackifyDisplay = ({data, onDelete}: TrackifyDisplayProps) => {
       <td>{item.category}</td>
       <td>
       <button
-                className="btn btn-danger"
-                onClick={() => onDelete(index)}
-              >
-                Delete
-              </button>
+      className="btn btn-danger"
+      onClick={() => onDelete(index)}
+      >
+      Delete
+      </button>
       </td>
     </tr>
     )
   )}
   </tbody>
+  <tfoot>
+    <td scope="col">Amount</td>
+    <td scope="col">${data.reduce((acc, expense)=> expense.amount + acc, 0)}</td>
+    <td scope="col"></td>
+    <td scope="col"></td>
+  </tfoot>
 </table>
 
 </>

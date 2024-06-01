@@ -19,13 +19,16 @@ const schema = z.object({
 
 
 const Trackify = ( {onSubmit}: FormProps) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
   
   
 return (
-  <form onSubmit={handleSubmit(onSubmit)}>
+  <form onSubmit={handleSubmit(data => {
+    onSubmit(data), 
+    reset()
+  })}>
     <div className="mb-5">
       <div className="mb-3">
         <label htmlFor="descriptionId" className="form-label">Description</label>
